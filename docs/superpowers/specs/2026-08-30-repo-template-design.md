@@ -20,7 +20,9 @@ Automatic release automation is intentionally excluded from the default template
 
 Both template workflows call `cjgl23/github-workflows` at the same immutable validated commit SHA:
 
-`c90cea7916f21bf35021b626e2a98ebf1c3e8a67`
+`b25f7e44fd55ce5efd4c57175557e00789d64070`
+
+This is the merged `main` commit for central PR #1 and its post-merge `Validate Shared Workflows` run completed successfully.
 
 No caller may use `@main`, a movable version tag, or another floating reference.
 
@@ -67,14 +69,17 @@ Creating a repository from this template copies the caller workflow files into t
 
 The template is a copy mechanism, not live inheritance. Existing repositories do not automatically receive later changes to `repo-template` or new central workflow SHAs. Updating a consumer's central SHA must remain an explicit reviewed change.
 
+Design and implementation-plan documents are retained in Git history but removed from the final template tree so newly generated repositories receive only the starter files intended for application repositories.
+
 ## Acceptance criteria
 
 The template is ready when:
 
 1. `README.md`, `.github/workflows/ci.yml`, and `.github/workflows/security.yml` exist on `main`.
-2. Both callers reference exactly `c90cea7916f21bf35021b626e2a98ebf1c3e8a67`.
+2. Both callers reference exactly `b25f7e44fd55ce5efd4c57175557e00789d64070`.
 3. Neither workflow contains `secrets: inherit`.
 4. Both workflows declare only `permissions: contents: read`.
 5. No release workflow is included.
 6. The repository contains no secrets or application-specific configuration.
 7. The resulting YAML is syntactically valid and structurally consistent with the validated central reusable-workflow interfaces.
+8. Design/plan implementation artifacts are absent from the final template tree.
