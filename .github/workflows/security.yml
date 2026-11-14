@@ -1,3 +1,4 @@
+# Scan every change to the template before it merges, including policy-only PRs.
 name: Security
 
 on:
